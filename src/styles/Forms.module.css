@@ -1,0 +1,81 @@
+.container{
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+
+}
+
+.column{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.container input{
+    height: 40px;
+    border: 1px solid var(--gray-300);
+    background-color: var(--gray-500);
+    border-radius: 6px;
+
+    font-size: 1rem;
+
+    padding: 0 10px;
+}
+
+.container input[type="text"]{
+    color: var(--gray-100);
+}
+
+.container input[type="number"]{
+    color: var(--gray-100);
+
+    width: 88px;
+}
+
+
+
+.container select{
+    height: 40px;
+
+    border: 1px solid var(--gray-300);
+    background-color: var(--gray-400);
+    border-radius: 6px;
+    color: var(--gray-200);
+    font-size: 1rem;
+    padding: 10px 15px;
+
+}
+
+.category{
+    width: 168px;
+}
+
+.amount{
+    width: 72px;
+
+}
+.amount option{
+    width: 72px;
+    height: 40px;
+
+    background-color: var(--gray-600);
+
+    border: solid 1px var(--gray-300);
+}
+
+.d_amount{
+    display: flex;
+    
+}
+
+
+
+
+.container label{
+    color: var(--gray-200);
+    font-size: 0.75rem;
+
+
+}
