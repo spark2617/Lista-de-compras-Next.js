@@ -1,0 +1,101 @@
+
+.cardContainer{
+
+    height: 68px;
+    width: 720px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    border: solid 1px var(--gray-300);
+    border-radius: 8px;
+
+    background-color: var(--gray-400);
+
+    padding: 16px;
+
+    
+}
+
+
+.checkbox{
+    display: flex;
+    align-items: center;
+    
+}
+
+.checkbox span{
+    height: 16px;
+    width: 16px;
+    
+    border: solid 1px var(--purple-light);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    color: #D9D9D9;
+
+    transition: 0.1s;
+}
+
+.checkbox span:hover{
+    color:var(--gray-100);
+    transition: 0.1s;
+
+    background-color: var(--purple-dark);
+}
+
+.checkbox input[type="checkbox"]:checked + span{
+    background-color: var(--sucess);
+    border: none;
+    transition: 0.1s;
+    
+}
+.checkbox input[type="checkbox"]:checked:hover + span{
+    color:var(--gray-100);
+    transition: 0.1s;
+
+    background-color: var(--sucess-light);
+}
+
+.lineThroungh{
+    opacity: 0.8;
+    text-decoration: line-through;
+    
+}
+
+.checked{
+    opacity: 0.7;
+}
+
+
+.checkbox input{
+    display: none;
+}
+
+.cardTitle{
+    font-size: 18px;
+    color: var(--gray-100);
+}
+
+.cardDetails{
+    color: var(--gray-200);
+    font-size: 16px;
+}
+
+.flexColumn{
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.flexRow{
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+
+

@@ -1,0 +1,43 @@
+.containerTag{
+    height: 32px;
+
+    border-radius: 999px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+
+    padding: 5px 15px;
+
+    font-size: 16px;
+}
+
+.checked{
+    opacity: 0.7;
+}
+
+.padaria{
+    background-color: var(--yellow-dark);
+    color: var(--yellow);
+}
+
+.carne{
+    background-color: var(--pink-dark);
+    color: var(--pink);
+}
+
+.legume{
+    background-color: var(--green-dark);
+    color: var(--green);
+}
+
+.bebida{
+    background-color: var(--blue-dark);
+    color: var(--blue);
+}
+
+.fruta{
+    background-color: var(--orange-dark);
+    color: var(--orange);
+}

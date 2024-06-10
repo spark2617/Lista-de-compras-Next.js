@@ -2,6 +2,8 @@ import Head from "next/head";
 import Forms from "./components/forms/forms";
 import styles from "@/styles/Home.module.css";
 import Header from "./components/header";
+import Card from "./components/card/card";
+import Tag from "./components/tag/TagCategory";
 
 export default function Home() {
   return (
@@ -14,6 +16,12 @@ export default function Home() {
 
       <Header/>
       <Forms /> 
+
+      <div className={styles.painel}>
+        <Card/>
+      </div>
+
+      
     </>
   );
 }
