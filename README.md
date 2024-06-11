@@ -13,7 +13,7 @@ Este projeto é uma aplicação web desenvolvida para gerenciar uma lista de com
 
 ### Componentes
 
-- **AddItemForm**: Formulário para adicionar novos itens à lista.
+- **Form**: Formulário para adicionar novos itens à lista.
 - **ItemList**: Componente que renderiza a lista de itens.
 - **Item**: Componente que representa cada item individual na lista, incluindo a funcionalidade para remover itens.
 
@@ -53,21 +53,22 @@ O usuário pode remover um item clicando no ícone de lixeira ao lado do item na
 
 Para rodar a aplicação localmente, siga os passos abaixo:
 
- **Instalar Dependências**
+**Instalar Dependências**
 
-   Execute o comando abaixo na raiz do projeto para instalar todas as dependências necessárias:
+Execute o comando abaixo na raiz do projeto para instalar todas as dependências necessárias:
 
 ```bash
-    npm install
+npm install
 ```
 
- **Executar Projeto**
+**Executar Projeto**
 
-    Execute o comando abaixo na raiz do projeto para iniciar o projeto na [httpslocalhost:3000](http://localhost:3000/)
+Execute o comando abaixo na raiz do projeto para iniciar o projeto na [httpslocalhost:3000](http://localhost:3000/)
 
-    ```bash
-    npm run dev
-    ```
+
+```bash
+npm run dev
+```
 
 ## Conclusão
 
