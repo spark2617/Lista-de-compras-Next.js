@@ -2,8 +2,9 @@ import styles from "@/styles/Card.module.css";
 import { Check, Dot, EllipsisVertical, MoveVertical } from "lucide-react";
 import { useState } from "react";
 import Tag from "../tag/TagCategory";
+import { ShoppingItem } from "@/pages/context/contextProvider";
 
-export default function Card() {
+export default function Card({name,id,checked,category,unitOfMeasure,quantity}:ShoppingItem) {
   const [isChecked, setIschecked] = useState<boolean>(false);
 
   function handleCheckboxChange() {
@@ -16,9 +17,9 @@ export default function Card() {
     >
       <div className={styles.flexRow}>
         <div className={styles.checkbox}>
-          <label htmlFor="check">
+          <label htmlFor={id}>
             <input
-              id="check"
+              id={id}
               checked={isChecked}
               onChange={handleCheckboxChange}
               name="check"
@@ -33,14 +34,14 @@ export default function Card() {
               isChecked ? styles.lineThroungh : ""
             }`}
           >
-            Maçã
+            {name}
           </strong>
-          <span className={styles.cardDetails}>6 unidades</span>
+          <span className={styles.cardDetails}>{quantity} {unitOfMeasure==="UN."?"unitario":unitOfMeasure==="Kg"?"kilo":"litros"}</span>
         </div>
       </div>
 
       <div className={styles.flexRow}>
-        <Tag checked={isChecked} category="padaria" />
+        <Tag checked={isChecked} category={category} />
         <EllipsisVertical size={20} color="#A881E6" />
       </div>
     </div>

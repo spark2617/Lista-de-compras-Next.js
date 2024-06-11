@@ -41,7 +41,7 @@
     height: 60px;
     display: flex;
     
-    align-items: end;
+    align-items: flex-end;
 }
 
 .column{
@@ -221,9 +221,6 @@
 .optionCategory li:not(:last-child) {
     border-bottom: solid 1px var(--gray-300);
 }
-
-
-
 
 .optionCategory li div{
     display: flex;

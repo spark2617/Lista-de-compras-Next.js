@@ -1,3 +1,4 @@
+import useShoppingList from "@/pages/context/useContext";
 import styles from "@/styles/Forms.module.css";
 import {
   Apple,
@@ -7,11 +8,11 @@ import {
   ChevronDown,
   ChevronUp,
   Milk,
-  Plug,
   Plus,
   Sandwich,
 } from "lucide-react";
 import { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 export default function Forms() {
   const [typeAmount, setTypeAmount] = useState<string>("UN.");
@@ -20,9 +21,8 @@ export default function Forms() {
   const [category, setCategory] = useState<string>("Selecione");
   const [openCategory, setOpenCategory] = useState<boolean>(false);
 
-
-  const [item, setItem] =useState<string>("")
-  const [amount, setAmount] = useState<number>(1)
+  const [item, setItem] = useState<string>("");
+  const [amount, setAmount] = useState<number>(1);
 
   const purpleLight = "#A881E6";
   const yellow = "#BB9F3A";
@@ -39,6 +39,8 @@ export default function Forms() {
     { icon: <Milk color={blue} size={16} />, label: "Bebida" },
   ];
 
+  const context = useShoppingList();
+
   function handleClickAmount(amount: string) {
     setTypeAmount(amount);
     setOpenAmount(false);
@@ -49,28 +51,54 @@ export default function Forms() {
     setOpenCategory(false);
   }
 
-  function handleChangeAmount(e: React.ChangeEvent<HTMLInputElement>){
-    setAmount(parseInt(e.target.value))
+  function handleChangeAmount(e: React.ChangeEvent<HTMLInputElement>) {
+    setAmount(parseInt(e.target.value));
   }
 
-  function handleChangeItem(e:React.ChangeEvent<HTMLInputElement>){
-    setItem(e.target.value)
+  function handleChangeItem(e: React.ChangeEvent<HTMLInputElement>) {
+    setItem(e.target.value);
   }
 
+  function handleClickShopping(
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) {
+    e.preventDefault();
+    context.addItem({
+      id: uuidv4(),
+      name: item,
+      quantity: amount,
+      unitOfMeasure: typeAmount,
+      category: category,
+      checked: false,
+    });
 
+    setItem("");
+    setAmount(1);
+    setTypeAmount("UN.");
+    setCategory("Selecione");
+  }
 
   return (
     <form className={styles.containerForm}>
       <div className={styles.column}>
-        <label htmlFor="">Name</label>
-        <input type="text" value={item} onChange={handleChangeItem} />
+        <label htmlFor="itemName">Name</label>
+        <input
+          id="itemName"
+          type="text"
+          value={item}
+          onChange={handleChangeItem}
+        />
       </div>
 
       <div className={styles.column}>
-        <label htmlFor="">Quantidade</label>
+        <label htmlFor="itemuantity">Quantidade</label>
         <div className={styles.flexRow}>
-          <input type="number" value={amount} onChange={handleChangeAmount}/>
-
+          <input
+            id="itemQuantity"
+            type="number"
+            value={amount}
+            onChange={handleChangeAmount}
+          />
           <div className={styles.flexColumn}>
             <div
               className={`${styles.selectAmount} ${styles.amount} ${
@@ -90,7 +118,9 @@ export default function Forms() {
                 {["UN.", "L", "Kg"].map((item) => (
                   <li key={item} onClick={() => handleClickAmount(item)}>
                     {item}{" "}
-                    {typeAmount === item && <Check color={purpleLight} size={12} />}
+                    {typeAmount === item && (
+                      <Check color={purpleLight} size={12} />
+                    )}
                   </li>
                 ))}
               </ul>
@@ -100,7 +130,7 @@ export default function Forms() {
       </div>
 
       <div className={styles.column}>
-        <label htmlFor="categorias">Categoria</label>
+        <label htmlFor="categories">Categoria</label>
         <div
           onClick={() => setOpenCategory(!openCategory)}
           className={`${styles.select} ${styles.selectCategory} ${
@@ -115,7 +145,7 @@ export default function Forms() {
           )}
         </div>
 
-        {openCategory ? (
+        {openCategory && (
           <ul className={`${styles.optionCategory}`}>
             {categories.map(({ icon, label }, index) => (
               <li onClick={() => handleClickCategory(label)} key={index}>
@@ -127,13 +157,11 @@ export default function Forms() {
               </li>
             ))}
           </ul>
-        ) : (
-          ""
         )}
       </div>
 
       <div className={styles.containerFormButton}>
-        <button >
+        <button onClick={handleClickShopping}>
           <Plus size={24} color="#fbf9fe" />
         </button>
       </div>

@@ -9,7 +9,7 @@ type TagProps = {
 export default function Tag(props: TagProps) {
   return (
     <>
-      {props.category === "fruta" ? (
+      {props.category === "Fruta" ? (
         <div
           className={`${styles.containerTag} ${
             props.checked ? styles.checked : ""
@@ -18,7 +18,7 @@ export default function Tag(props: TagProps) {
           <Apple size={16} />
           fruta
         </div>
-      ) : props.category === "legume" ? (
+      ) : props.category === "Legume" ? (
         <div
           className={`${styles.containerTag} ${
             props.checked ? styles.checked : ""
@@ -26,7 +26,7 @@ export default function Tag(props: TagProps) {
         >
           <Carrot size={16} /> legume
         </div>
-      ) : props.category === "carne" ? (
+      ) : props.category === "Carne" ? (
         <div
           className={`${styles.containerTag} ${
             props.checked ? styles.checked : ""
@@ -34,7 +34,7 @@ export default function Tag(props: TagProps) {
         >
           <Beef size={16} /> carne
         </div>
-      ) : props.category === "padaria" ? (
+      ) : props.category === "Padaria" ? (
         <div
           className={`${styles.containerTag} ${
             props.checked ? styles.checked : ""

@@ -3,9 +3,11 @@ import Forms from "./components/forms/forms";
 import styles from "@/styles/Home.module.css";
 import Header from "./components/header";
 import Card from "./components/card/card";
-import Tag from "./components/tag/TagCategory";
+import useShoppingList from "./context/useContext";
 
 export default function Home() {
+  const context = useShoppingList();
+  
   return (
     <>
       <Head>
@@ -14,14 +16,24 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
-      <Header/>
-      <Forms /> 
+      <Header />
+      <Forms />
 
       <div className={styles.painel}>
-        <Card/>
+        {context.items.length > 0
+          ? context.items.map((item) => (
+              <Card
+                key={item.id}
+                id={item.id}
+                name={item.name}
+                quantity={item.quantity}
+                unitOfMeasure={item.unitOfMeasure}
+                checked={item.checked}
+                category={item.category}
+              />
+            ))
+          : "vazio"}
       </div>
-
-      
     </>
   );
 }
