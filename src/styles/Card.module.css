@@ -97,5 +97,13 @@
     align-items: center;
 }
 
+.trash{
+    border-radius: 6px;
+    color: var(--purple-light);
+}
 
-
+.trash:hover{
+    color: var(--purple-dark);
+    transition: 0.2s;
+    
+}

@@ -162,6 +162,9 @@ export default function Forms() {
 
       <div className={styles.containerFormButton}>
         <button
+          title={item === "" || category === "Selecione" || amount === null
+            ? "Preencha todos os campo"
+            : "Criar"}
           onClick={handleClickShopping}
           disabled={
             item === "" || category === "Selecione" || amount === null
