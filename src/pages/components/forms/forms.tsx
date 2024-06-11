@@ -161,7 +161,14 @@ export default function Forms() {
       </div>
 
       <div className={styles.containerFormButton}>
-        <button onClick={handleClickShopping}>
+        <button
+          onClick={handleClickShopping}
+          disabled={
+            item === "" || category === "Selecione" || amount === null
+              ? true
+              : false
+          }
+        >
           <Plus size={24} color="#fbf9fe" />
         </button>
       </div>

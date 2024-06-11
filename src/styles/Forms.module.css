@@ -37,6 +37,11 @@
 
 }
 
+.containerForm button:disabled{
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
 .containerFormButton{
     height: 60px;
     display: flex;

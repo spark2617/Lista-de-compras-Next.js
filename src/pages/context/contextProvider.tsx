@@ -1,5 +1,10 @@
 // src/context/ShoppingListContext.tsx
-import React, { createContext, ReactNode, useContext, useEffect, useState } from "react";
+import React, {
+  createContext,
+  ReactNode,
+  useEffect,
+  useState,
+} from "react";
 
 export interface ShoppingItem {
   id: string;
@@ -26,41 +31,45 @@ const ShoppingListContext = createContext<ShoppingListContextProps | undefined>(
   undefined
 );
 
-function ShoppingListProvider({ children }:ContextProps){
+function ShoppingListProvider({ children }: ContextProps) {
   const [items, setItems] = useState<ShoppingItem[]>([]);
+  const [isLoaded, setIsLoaded] = useState<boolean>(false); 
 
   useEffect(() => {
-    const storedItems = localStorage.getItem("shoppingList");
-    
-    if (storedItems) {
-      
-      setItems(JSON.parse(storedItems));
-      
+    function loadShoppingItems() {
+      const storedItems = localStorage.getItem("shoppingList");
+      if (storedItems) {
+        setItems(JSON.parse(storedItems));
+      }
+      setIsLoaded(true); 
     }
-    
+
+    loadShoppingItems();
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("shoppingList", JSON.stringify(items));
-  }, [items]);
+    if (isLoaded) {
+      localStorage.setItem("shoppingList", JSON.stringify(items));
+    }
+  }, [items, isLoaded]);
 
   const addItem = (item: ShoppingItem) => {
-    setItems([...items, item]);
+    setItems((prevItems) => [item, ...prevItems]);
   };
 
   const updateItem = (updatedItem: ShoppingItem) => {
-    setItems(
-      items.map((item) => (item.id === updatedItem.id ? updatedItem : item))
+    setItems((prevItems) =>
+      prevItems.map((item) => (item.id === updatedItem.id ? updatedItem : item))
     );
   };
 
   const deleteItem = (id: string) => {
-    setItems(items.filter((item) => item.id !== id));
+    setItems((prevItems) => prevItems.filter((item) => item.id !== id));
   };
 
   const toggleItemChecked = (id: string) => {
-    setItems(
-      items.map((item) =>
+    setItems((prevItems) =>
+      prevItems.map((item) =>
         item.id === id ? { ...item, checked: !item.checked } : item
       )
     );
@@ -73,6 +82,6 @@ function ShoppingListProvider({ children }:ContextProps){
       {children}
     </ShoppingListContext.Provider>
   );
-};
+}
 
 export { ShoppingListProvider, ShoppingListContext };

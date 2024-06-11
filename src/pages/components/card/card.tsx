@@ -3,12 +3,23 @@ import { Check, Dot, EllipsisVertical, MoveVertical } from "lucide-react";
 import { useState } from "react";
 import Tag from "../tag/TagCategory";
 import { ShoppingItem } from "@/pages/context/contextProvider";
+import useShoppingList from "@/pages/context/useContext";
 
-export default function Card({name,id,checked,category,unitOfMeasure,quantity}:ShoppingItem) {
-  const [isChecked, setIschecked] = useState<boolean>(false);
+export default function Card({
+  name,
+  id,
+  checked,
+  category,
+  unitOfMeasure,
+  quantity,
+}: ShoppingItem) {
+  const [isChecked, setIschecked] = useState<boolean>(checked);
 
-  function handleCheckboxChange() {
+  const context = useShoppingList();
+
+  function handleCheckboxChange(id: string) {
     setIschecked(!isChecked);
+    context.toggleItemChecked(id);
   }
 
   return (
@@ -21,7 +32,9 @@ export default function Card({name,id,checked,category,unitOfMeasure,quantity}:S
             <input
               id={id}
               checked={isChecked}
-              onChange={handleCheckboxChange}
+              onChange={() => {
+                handleCheckboxChange(id);
+              }}
               name="check"
               type="checkbox"
             />
@@ -36,7 +49,14 @@ export default function Card({name,id,checked,category,unitOfMeasure,quantity}:S
           >
             {name}
           </strong>
-          <span className={styles.cardDetails}>{quantity} {unitOfMeasure==="UN."?"unitario":unitOfMeasure==="Kg"?"kilo":"litros"}</span>
+          <span className={styles.cardDetails}>
+            {quantity}{" "}
+            {unitOfMeasure === "UN."
+              ? "unitario"
+              : unitOfMeasure === "Kg"
+              ? "kilo"
+              : "litros"}
+          </span>
         </div>
       </div>
 

@@ -5,7 +5,11 @@ import Header from "./components/header";
 import Card from "./components/card/card";
 import useShoppingList from "./context/useContext";
 
+
 export default function Home() {
+
+  
+
   const context = useShoppingList();
   
   return (
