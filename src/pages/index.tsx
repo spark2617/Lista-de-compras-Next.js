@@ -23,6 +23,7 @@ export default function Home() {
       <div className={styles.painel}>
         {context.items.length > 0 ? (
           context.items.map((item) => (
+            
             <Card
               key={item.id}
               id={item.id}
